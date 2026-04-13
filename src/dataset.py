@@ -1,6 +1,5 @@
 from pathlib import Path
 import torch
-from torch.utils.data import DataLoader, TensorDataset
 from torchvision import datasets, transforms
 import torch.nn.functional as F
 from PIL import Image
@@ -13,7 +12,7 @@ def save_splits(train_images, train_labels, val_images, val_labels, test_images,
     torch.save({"images": test_images, "labels": test_labels}, output_path / "test.pt")
     torch.save(config, output_path / "config.pt")
 
-def save_mnist_dataloaders(batch_size=32, num_workers=0, val_size=0.1):
+def save_mnist_dataloaders(batch_size=32, num_workers=0, val_size=0.1, seed = 42):
     output_dir = "../dataset/mnist"
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
@@ -43,6 +42,7 @@ def save_mnist_dataloaders(batch_size=32, num_workers=0, val_size=0.1):
     train_dataset, val_dataset = torch.utils.data.random_split(
         train_dataset,
         [train_size, val_size],
+        generator = torch.Generator().manual_seed(seed)
     )
     
     print(f"Train dataset size: {len(train_dataset)}")
@@ -73,7 +73,8 @@ def save_mnist_dataloaders(batch_size=32, num_workers=0, val_size=0.1):
         },
     )
 
-def save_svhn_dataloaders(batch_size=32, num_workers=0, val_size=0.1, output_dir="../dataset/svhn"):
+def save_svhn_dataloaders(batch_size=32, num_workers=0, val_size=0.1, seed = 42):
+    output_dir="../dataset/svhn"
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
     
@@ -103,6 +104,7 @@ def save_svhn_dataloaders(batch_size=32, num_workers=0, val_size=0.1, output_dir
     train_dataset, val_dataset = torch.utils.data.random_split(
         train_dataset,
         [train_size, val_size],
+        generator = torch.Generator().manual_seed(seed)
     )
 
     print(f"Train dataset size: {len(train_dataset)}")
@@ -185,7 +187,7 @@ def compute_channel_stats_hwc_uint8(images):
 
     return tuple(mean.tolist()), tuple(std.tolist())
 
-def save_mnist_m_dataloaders(batch_size=32, num_workers=0, val_size=0.1):
+def save_mnist_m_dataloaders(batch_size=32, num_workers=0, val_size=0.1, seed = 42):
     output_dir = "../dataset/mnist_m"
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
@@ -202,7 +204,7 @@ def save_mnist_m_dataloaders(batch_size=32, num_workers=0, val_size=0.1):
     n_val = int(val_size * n_total)
     n_train = n_total - n_val
 
-    generator = torch.Generator()
+    generator = torch.Generator().manual_seed(seed)
     perm = torch.randperm(n_total, generator=generator)
 
     train_idx = perm[:n_train]

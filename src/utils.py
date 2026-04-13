@@ -19,8 +19,8 @@ def deterministic(seed = 42):
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
 
-def select_fixed_subset(images, labels, samples_per_class=100):
-    g = torch.Generator()
+def select_fixed_subset(images, labels, samples_per_class=100, seed = 42):
+    g = torch.Generator().manual_seed(seed)
 
     selected_images = []
     selected_labels = []
@@ -216,13 +216,7 @@ def eval_episode(model, sampler, device):
     return correct, total
 
 def evaluate_domain(model, images, labels, n_way, k, q, episodes, device):
-    sampler = EpisodeSampler(
-        images=images,
-        labels=labels,
-        n_way=n_way,
-        k_shot=k,
-        q_query=q,
-    )
+    sampler = EpisodeSampler(images=images, labels=labels, n_way=n_way, k_shot=k, q_query=q)
 
     total_correct = 0
     total_samples = 0
