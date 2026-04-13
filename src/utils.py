@@ -6,6 +6,8 @@ import matplotlib.pyplot as plt
 from sklearn.manifold import TSNE
 import os
 
+from episode_sampler import EpisodeSampler
+
 def deterministic(seed = 42):
     random.seed(seed)
     np.random.seed(seed)
@@ -153,8 +155,8 @@ def train_protonet(model, train_sampler, val_sampler, optimizer, criterion,
             images=tsne_images,
             labels=tsne_labels,
             device=device,
-            save_path=os.path.join(tsne_dir, "tsne_start.png"),
-            title="t-SNE - inicio del entrenamiento",
+            save_path=os.path.join(tsne_dir, "tsne_epoch_1.png"),
+            title="t-SNE - 1",
         )
 
     mid_epoch = epochs // 2
@@ -196,3 +198,49 @@ def train_protonet(model, train_sampler, val_sampler, optimizer, criterion,
             )
 
     return history
+
+def eval_episode(model, sampler, device):
+    model.eval()
+    with torch.no_grad():
+        support_images, support_labels, query_images, query_labels, _ = sampler.sample_episode()
+
+        support_images = support_images.to(device)
+        support_labels = support_labels.to(device)
+        query_images = query_images.to(device)
+        query_labels = query_labels.to(device)
+
+        query_logits, _, _, _ = model.forward_episode(support_images, support_labels, query_images)
+        pred_labels = torch.argmax(query_logits, dim=1)
+        correct = (pred_labels == query_labels).sum().item()
+        total = query_labels.size(0)
+    return correct, total
+
+def evaluate_domain(model, images, labels, n_way, k, q, episodes, device):
+    sampler = EpisodeSampler(
+        images=images,
+        labels=labels,
+        n_way=n_way,
+        k_shot=k,
+        q_query=q,
+    )
+
+    total_correct = 0
+    total_samples = 0
+
+    for _ in range(episodes):
+        correct, total = eval_episode(model, sampler, device)
+        total_correct += correct
+        total_samples += total
+
+    return total_correct / total_samples
+
+def evaluate_domains(model, test_data, n_way, ks, q, episodes, device):
+    accuracies = {}
+    for domain_name, (images, labels) in test_data.items():
+        domain_accuracies = []
+        for k in ks:
+            accuracy = evaluate_domain(model=model, images=images, labels=labels,
+                                       n_way=n_way, k=k, q=q, episodes=episodes, device=device)
+            domain_accuracies.append(accuracy)
+        accuracies[domain_name] = domain_accuracies
+    return accuracies

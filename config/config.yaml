@@ -26,6 +26,7 @@ experiment_1:
   hidden_dim: 64
   embedding_dim: 64
   lr: 0.001
+  evalute_episodes: 100
 
 xtra:
   seed: 42
