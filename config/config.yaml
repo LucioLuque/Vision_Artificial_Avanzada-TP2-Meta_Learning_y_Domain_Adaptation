@@ -1,0 +1,31 @@
+Mnist:
+  batch_size: 512
+  num_workers: 4
+  val_size: 0.1
+  dataset_output_dir: "../dataset/mnist"
+
+Svhn:
+  batch_size: 512
+  num_workers: 4
+  val_size: 0.1
+  dataset_output_dir: "../dataset/svhn"
+
+Mnist_M:
+  batch_size: 512
+  num_workers: 4
+  val_size: 0.1
+  dataset_output_dir: "../dataset/mnist_m"
+
+experiment_1:
+  n_way: 5
+  k_shot: 5
+  q_query: 15
+  episodes: 5
+  epochs: 10
+  in_channels: 3
+  hidden_dim: 64
+  embedding_dim: 64
+  lr: 0.001
+
+xtra:
+  seed: 42
