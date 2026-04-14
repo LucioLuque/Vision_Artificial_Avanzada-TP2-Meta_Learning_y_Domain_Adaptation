@@ -187,7 +187,7 @@ def train_protonet(model, train_sampler, val_sampler, optimizer, criterion,
             "val_q_acc": f"{val_query_acc:.4f}",
         })
 
-        if (tsne_images is not None and tsne_labels is not None) and (epoch == mid_epoch - 1 or epoch == mid_epoch):
+        if (tsne_images is not None and tsne_labels is not None) and (epoch == mid_epoch - 1 or epoch == epochs - 1):
             save_tsne_snapshot(
                 model=model,
                 images=tsne_images,
