@@ -20,13 +20,13 @@ experiment_1:
   n_way: 5
   k_shot: 5
   q_query: 15
-  episodes: 5
-  epochs: 10
+  episodes: 100
+  epochs: 100
   in_channels: 3
   hidden_dim: 64
   embedding_dim: 64
   lr: 0.001
-  evalute_episodes: 100
+  evalute_episodes: 1000
 
 xtra:
   seed: 42
