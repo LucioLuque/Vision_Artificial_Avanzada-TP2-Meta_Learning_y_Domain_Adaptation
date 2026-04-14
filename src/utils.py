@@ -100,7 +100,7 @@ def run_epoch(model, sampler, optimizer, criterion, device, episodes, training =
         if training:
             optimizer.zero_grad()
 
-        query_logits, prototypes, support_embeddings, query_embeddings = model.forward_episode(support_images, support_labels, query_images)
+        query_logits, prototypes, support_embeddings, _ = model.forward_episode(support_images, support_labels, query_images)
 
         loss = criterion(query_logits, query_labels)
 
