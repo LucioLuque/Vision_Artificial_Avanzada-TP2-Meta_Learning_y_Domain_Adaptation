@@ -155,8 +155,8 @@ def train_protonet(model, train_sampler, val_sampler, optimizer, criterion,
             images=tsne_images,
             labels=tsne_labels,
             device=device,
-            save_path=os.path.join(tsne_dir, "tsne_epoch_1.png"),
-            title="t-SNE - 1",
+            save_path=os.path.join(tsne_dir, "tsne_epoch_0.png"),
+            title="0",
         )
 
     mid_epoch = epochs // 2
@@ -194,7 +194,7 @@ def train_protonet(model, train_sampler, val_sampler, optimizer, criterion,
                 labels=tsne_labels,
                 device=device,
                 save_path=os.path.join(tsne_dir, f"tsne_epoch_{epoch+1}.png"),
-                title=f"t-SNE - {epoch+1}",
+                title=f"{epoch+1}",
             )
 
     return history

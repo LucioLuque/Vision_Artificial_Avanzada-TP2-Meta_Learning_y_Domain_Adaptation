@@ -28,5 +28,39 @@ experiment_1:
   lr: 0.001
   evalute_episodes: 1000
 
+experiment_2:
+  n_way: 5
+  k_shot: 1
+  q_query: 15
+
+  meta_batch_size: 8
+  inner_updates: 4
+  meta_iterations: 40
+  
+  in_channels: 3
+  hidden_dim: 64
+  embedding_dim: 64
+  
+  alpha: 0.05 #inner lr
+  beta: 0.001 #meta lr
+  
+  # evalute_episodes: 100
+
+experiment_3:
+  n_way: 5
+  k_shot: 1
+  q_query: 15
+
+  meta_batch_size: 8
+  inner_updates: 4
+  meta_iterations: 40
+  
+  in_channels: 3
+  hidden_dim: 64
+  embedding_dim: 64
+  
+  alpha: 0.0054 #inner lr
+  beta: 0.001 #meta lr
+
 xtra:
   seed: 42
