@@ -7,6 +7,9 @@ class ConvBlock(nn.Module):
         self.block = nn.Sequential(
             nn.Conv2d(in_channels, out_channels, kernel_size=3, padding=1),
             nn.GroupNorm(num_groups, out_channels),
+            #Group norm porque batch norm depende de estadisitcad del batch y con batches pequeños puede
+            # ser inestable, mientras que group norm normaliza dentro de grupos de canales y es más 
+            # estable con batches pequeños. Por eso es más adecuado para MAML y protoMAML
             nn.ReLU(inplace=False),
             nn.MaxPool2d(kernel_size=2),
         )
