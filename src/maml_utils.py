@@ -1,3 +1,4 @@
+from episode_sampler import EpisodeSampler
 import torch
 import torch.nn.functional as F
 from collections import OrderedDict
@@ -98,6 +99,51 @@ def train_maml(model, train_sampler, val_sampler, optimizer, meta_iterations, me
 
 
     return history
+
+
+def eval_episode(model, sampler, inner_updates, alpha, device):
+    model.eval()
+    
+    support_images, support_labels, query_images, query_labels, _ = sampler.sample_episode()
+
+    support_images = support_images.to(device)
+    support_labels = support_labels.to(device)
+    query_images = query_images.to(device)
+    query_labels = query_labels.to(device)
+
+    params = inner_loop(model, support_images, support_labels, inner_updates, alpha, create_graph=False)
+    
+    query_logits = model(query_images, params)
+    preds = torch.argmax(query_logits, dim=1)
+    correct = (preds == query_labels).sum().item()
+    total = query_labels.size(0)
+    return correct, total
+
+def evaluate_domain(model, images, labels, n_way, k, q, episodes, inner_updates, alpha, device):
+    sampler = EpisodeSampler(images=images, labels=labels, n_way=n_way, k_shot=k, q_query=q)
+
+    total_correct = 0
+    total_samples = 0
+
+    for _ in range(episodes):
+        correct, total = eval_episode(model, sampler, inner_updates, alpha, device)
+        total_correct += correct
+        total_samples += total
+
+    return total_correct / total_samples
+
+def evaluate_domains_maml(model, test_data, n_way, ks, q, episodes, inner_updates, alpha, device):
+    accuracies = {}
+    for domain_name, (images, labels) in test_data.items():
+        domain_accuracies = []
+        for k in ks:
+            accuracy = evaluate_domain(model=model, images=images, labels=labels,
+                                       n_way=n_way, k=k, q=q, episodes=episodes, 
+                                       inner_updates=inner_updates, alpha=alpha, 
+                                       device=device)
+            domain_accuracies.append(accuracy)
+        accuracies[domain_name] = domain_accuracies
+    return accuracies
 
 def plot_maml_history(history):
     epochs = range(1, len(history["train_query_loss"]) + 1)

@@ -62,5 +62,11 @@ experiment_3:
   alpha: 0.0054 #inner lr
   beta: 0.001 #meta lr
 
+compare_experiments:
+  n_way: 5
+  ks: [1, 2, 4, 8, 16]
+  q_query: 15
+  episodes: 10
+
 xtra:
   seed: 42
