@@ -148,25 +148,8 @@ def train_dann(model, train_source_loader, val_source_loader, train_target_loade
     return history
 
 
-def evaluate_dann(model, test_source_loader, test_target_loader, epochs, device):
-    class_loss = nn.CrossEntropyLoss()
-    domain_loss = nn.BCEWithLogitsLoss()
-
-    num_batches = min(len(test_source_loader), len(test_target_loader))
-    step = 0
-
-    history = {
-        "test_class_acc": [],
-        "test_domain_acc": [],
-    }
-
-    epoch_bar = tqdm(range(epochs), desc="Epochs")
-    model.eval()
-    total_class_acc = 0.0
-    total_domain_acc = 0.0
-    batch_bar = tqdm(zip(test_source_loader, test_target_loader), total=num_batches, desc="Batches", leave=False)
-    
+def evaluate_dann(model, test_source_loader, test_target_loader, device):
     s_acc = evaluate(model, test_source_loader, device)
     d_acc = evaluate(model, test_target_loader, device)
         
-    return history
+    return s_acc, d_acc
