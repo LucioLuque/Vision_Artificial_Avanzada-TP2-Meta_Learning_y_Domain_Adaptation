@@ -64,6 +64,16 @@ dann_baseline:
   batch_size: 512
   num_workers: 0
   lr: 0.001 
+  epochs: 100
+
+dann_without_grl:
+  in_channels: 3
+  hidden_dim: 64
+  embedding_dim: 64
+
+  batch_size: 512
+  num_workers: 0
+  lr: 0.001 
   epochs: 200
 
 dann:
@@ -73,7 +83,7 @@ dann:
   batch_size: 512
   num_workers: 0
   lr: 0.001
-  epochs: 200
+  epochs: 400
 
 compare_experiments:
   n_way: 5
