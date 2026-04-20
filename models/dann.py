@@ -38,3 +38,11 @@ class DANNModel(nn.Module):
         class_output = self.task_classifier(features)
         domain_output = self.domain_classifier(reverse_features)
         return class_output, domain_output
+
+    def save(self, path):
+        torch.save(self.state_dict(), path)
+
+    def load(self, path, device):
+        state_dict = torch.load(path, map_location=device)
+        self.load_state_dict(state_dict)
+        self.to(device)

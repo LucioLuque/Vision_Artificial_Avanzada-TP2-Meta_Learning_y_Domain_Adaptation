@@ -58,3 +58,4 @@ class MAMLNet(nn.Module):
     def load(self, path, device):
         state_dict = torch.load(path, map_location=device)
         self.load_state_dict(state_dict)
+        self.to(device)
