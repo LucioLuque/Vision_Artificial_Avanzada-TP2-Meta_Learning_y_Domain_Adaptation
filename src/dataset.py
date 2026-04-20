@@ -5,6 +5,7 @@ import torch.nn.functional as F
 from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
+from torch.utils.data import TensorDataset, DataLoader
 
 def save_splits(train_images, train_labels, val_images, val_labels, test_images, test_labels, output_path, config):
     torch.save({"images": train_images, "labels": train_labels}, output_path / "train.pt")
@@ -12,7 +13,7 @@ def save_splits(train_images, train_labels, val_images, val_labels, test_images,
     torch.save({"images": test_images, "labels": test_labels}, output_path / "test.pt")
     torch.save(config, output_path / "config.pt")
 
-def save_mnist_dataloaders(batch_size=32, num_workers=0, val_size=0.1, seed = 42):
+def save_mnist_dataloaders(val_size=0.1, seed = 42):
     output_dir = "../dataset/mnist"
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
@@ -65,15 +66,13 @@ def save_mnist_dataloaders(batch_size=32, num_workers=0, val_size=0.1, seed = 42
         test_labels,
         output_path,
         {
-            "batch_size": batch_size,
-            "num_workers": num_workers,
             "val_size": val_size,
             "mean": (0.1307,),
             "std": (0.3081,),
         },
     )
 
-def save_svhn_dataloaders(batch_size=32, num_workers=0, val_size=0.1, seed = 42):
+def save_svhn_dataloaders(val_size=0.1, seed = 42):
     output_dir="../dataset/svhn"
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
@@ -127,8 +126,6 @@ def save_svhn_dataloaders(batch_size=32, num_workers=0, val_size=0.1, seed = 42)
         test_labels,
         output_path,
         {
-            "batch_size": batch_size,
-            "num_workers": num_workers,
             "val_size": val_size,
             "mean": (0.4377, 0.4438, 0.4728),
             "std": (0.1980, 0.2010, 0.1970),
@@ -187,7 +184,7 @@ def compute_channel_stats_hwc_uint8(images):
 
     return tuple(mean.tolist()), tuple(std.tolist())
 
-def save_mnist_m_dataloaders(batch_size=32, num_workers=0, val_size=0.1, seed = 42):
+def save_mnist_m_dataloaders(val_size=0.1, seed = 42):
     output_dir = "../dataset/mnist_m"
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
@@ -232,8 +229,6 @@ def save_mnist_m_dataloaders(batch_size=32, num_workers=0, val_size=0.1, seed = 
         test_labels,
         output_path,
         {
-            "batch_size": batch_size,
-            "num_workers": num_workers,
             "val_size": val_size,
             "mean": mean,
             "std": std,
@@ -290,28 +285,27 @@ def load_data(data, input_dir, target_size=(32, 32)):
 
     return images, labels
 
-# def load_loader(data, input_dir, target_size=(32, 32)):
-#     input_path = Path(input_dir)
-#     split_path = input_path / f"{data}.pt"
-#     checkpoint = torch.load(split_path, map_location="cpu")
+def load_loader(data, input_dir, batch_size = 32, num_workers = 0, target_size=(32, 32)):
+    input_path = Path(input_dir)
+    split_path = input_path / f"{data}.pt"
+    checkpoint = torch.load(split_path, map_location="cpu")
 
-#     config_path = input_path / "config.pt"
-#     config = torch.load(config_path, map_location="cpu")
-#     batch_size = config.get("batch_size")
-#     num_workers = config.get("num_workers")
-#     mean = config.get("mean")
-#     std = config.get("std")
+    config_path = input_path / "config.pt"
+    config = torch.load(config_path, map_location="cpu")
 
-#     ds = TensorDataset(prepare_images(checkpoint["images"], target_size, mean, std), 
-#                        checkpoint["labels"].long())
+    mean = config.get("mean")
+    std = config.get("std")
 
-#     return DataLoader(
-#         ds,
-#         batch_size=batch_size,
-#         shuffle=(data == "train"),
-#         num_workers=num_workers,
-#         pin_memory=torch.cuda.is_available(),
-#     )
+    ds = TensorDataset(prepare_images(checkpoint["images"], target_size, mean, std), 
+                       checkpoint["labels"].long())
+
+    return DataLoader(
+        ds,
+        batch_size=batch_size,
+        shuffle=(data == "train"),
+        num_workers=num_workers,
+        pin_memory=torch.cuda.is_available(),
+    )
 
 def reconstruct_image_to_plot(img_tensor, mean, std):
     img = img_tensor.detach().cpu().float()
