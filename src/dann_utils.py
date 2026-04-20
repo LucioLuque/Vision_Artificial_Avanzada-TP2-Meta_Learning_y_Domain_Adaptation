@@ -70,62 +70,6 @@ def train_baseline(model, train_source_loader, val_source_loader, val_target_loa
         })
     return history
 
-
-def train_dann_without_grl(model, train_source_loader, val_source_loader, train_target_loader, val_target_loader, optimizer, epochs, device):
-    class_loss = nn.CrossEntropyLoss()
-
-    history = {
-        "train_class_loss": [],
-        "val_source_acc": [],
-        "val_target_acc": []
-    }
-
-    num_batches = min(len(train_source_loader), len(train_target_loader))
-
-    epoch_bar = tqdm(range(epochs), desc="Epochs")
-    for epoch in epoch_bar:
-        model.train()
-        total_class_loss = 0.0
-
-        batch_bar = tqdm(zip(train_source_loader, train_target_loader), total=num_batches, desc="Batches", leave=False)
-        for (source_data, source_labels), (target_data, target_labels) in batch_bar:
-            source_data = source_data.to(device)
-            source_labels = source_labels.to(device)
-
-            target_data = target_data.to(device)
-            target_labels = target_labels.to(device)
-
-            optimizer.zero_grad()
-
-            s_class_output, _ = model(source_data, lambda_p=0.0)
-            t_class_output, _ = model(target_data, lambda_p=0.0)
-
-            s_cls_loss = class_loss(s_class_output, source_labels)
-            t_cls_loss = class_loss(t_class_output, target_labels)
-
-            cls_loss = s_cls_loss + t_cls_loss
-            cls_loss.backward()
-            optimizer.step()
-
-            total_class_loss += cls_loss.item()
-            batch_bar.set_postfix({"cls_loss": f"{cls_loss.item():.4f}"})
-
-        val_source_acc = evaluate(model, val_source_loader, device)
-        val_target_acc = evaluate(model, val_target_loader, device)
-
-        avg_loss = total_class_loss / num_batches
-
-        history["train_class_loss"].append(avg_loss)
-        history["val_source_acc"].append(val_source_acc)
-        history["val_target_acc"].append(val_target_acc)
-        
-        epoch_bar.set_postfix({
-            "loss": f"{avg_loss:.4f}",
-            "val_source_acc": f"{val_source_acc:.4f}",
-            "val_target_acc": f"{val_target_acc:.4f}"
-        })
-    return history
-
 def train_dann(model, train_source_loader, val_source_loader, train_target_loader, val_target_loader,
                optimizer, epochs, device):
     class_loss = nn.CrossEntropyLoss()
@@ -161,12 +105,9 @@ def train_dann(model, train_source_loader, val_source_loader, train_target_loade
             optimizer.zero_grad()
 
             s_class_output, s_domain_output = model(source_data, lambda_p=lambda_p)
-            t_class_output, t_domain_output = model(target_data, lambda_p=lambda_p)
+            _, t_domain_output = model(target_data, lambda_p=lambda_p)
 
-            s_cls_loss = class_loss(s_class_output, source_labels)
-            t_cls_loss = class_loss(t_class_output, target_labels)
-
-            cls_loss = s_cls_loss + t_cls_loss
+            cls_loss = class_loss(s_class_output, source_labels)
 
             domain_output = torch.cat([s_domain_output, t_domain_output], dim=0)
             domain_labels = torch.cat([torch.ones(source_data.size(0), 1), torch.zeros(target_data.size(0), 1)]).to(device)
