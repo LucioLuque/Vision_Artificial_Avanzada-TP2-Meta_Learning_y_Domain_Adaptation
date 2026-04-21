@@ -64,7 +64,7 @@ dann_baseline:
   batch_size: 512
   num_workers: 0
   lr: 0.001 
-  epochs: 100
+  epochs: 150
 
 dann_without_grl:
   in_channels: 3
@@ -74,7 +74,7 @@ dann_without_grl:
   batch_size: 512
   num_workers: 0
   lr: 0.001 
-  epochs: 100
+  epochs: 150
 
 dann:
   in_channels: 3

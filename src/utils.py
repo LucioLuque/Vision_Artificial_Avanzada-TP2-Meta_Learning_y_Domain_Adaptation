@@ -3,6 +3,7 @@ import numpy as np
 import torch
 import matplotlib.pyplot as plt
 from sklearn.manifold import TSNE
+import os
 
 def deterministic(seed = 42):
     random.seed(seed)
@@ -53,13 +54,16 @@ def plot_accuracies_model(ks, accuracies, ax):
     return ax
 
 def plot_accuracies_all_models(ks, accuracies, models_name):
-    fig, axes = plt.subplots(1, len(models_name), figsize=(5 * len(models_name), 4), sharey=True)
+    fig, axes = plt.subplots(1, len(models_name), figsize=(15, 5), sharey=True)
     for i in range(len(models_name)):
         plot_accuracies_model(ks, accuracies[i], axes[i])
         axes[i].set_title(f"{models_name[i]}", fontsize=14)
         if i != 0:
             axes[i].set_ylabel("")
     fig.tight_layout()
+    path = "../images/compare_models/accuracies_ks.png"
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    plt.savefig(path, dpi=300, bbox_inches="tight")
     plt.show()
 
 def get_embeddings_labels(models, models_name, fixed_images_labels, device):
@@ -106,11 +110,12 @@ def get_embeddings_labels(models, models_name, fixed_images_labels, device):
     print(len(all_models))
     return all_embeddings, all_labels, all_domains, all_models
 
-def plot_tsnes_model(embeddings, labels, domains, domain_colors, cmap):
+def plot_tsnes_model(embeddings, labels, domains, domain_colors, cmap, path):
     tsne = TSNE(n_components=2, random_state=42, perplexity=30, init="pca", learning_rate="auto" )
     tsne_embeddings = tsne.fit_transform(embeddings)
 
     #plot 2, domain color and class color
+    fontsize = 14
     fig, axes = plt.subplots(1, 2, figsize=(20, 10), sharex=True, sharey=True)
 
     for domain in np.unique(domains):
@@ -136,15 +141,18 @@ def plot_tsnes_model(embeddings, labels, domains, domain_colors, cmap):
             alpha=0.7,
             s=20
         )
-    axes[0].set_xlabel("t-SNE Dimension 1")
-    axes[0].set_ylabel("t-SNE Dimension 2")
+    axes[0].set_xlabel("t-SNE Dimension 1", fontsize=fontsize)
+    axes[0].set_ylabel("t-SNE Dimension 2", fontsize=fontsize)
     axes[0].grid(True)
     axes[0].legend(fontsize=16)
 
-    axes[1].set_xlabel("t-SNE Dimension 1")
+    axes[1].set_xlabel("t-SNE Dimension 1", fontsize=fontsize)
     axes[1].grid(True)
 
     cbar = fig.colorbar(scatter, ax=axes[1], ticks=list(range(10)))
     cbar.set_label("Class")
     fig.tight_layout()
+
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    fig.savefig(path, dpi=300, bbox_inches="tight")
     plt.show()

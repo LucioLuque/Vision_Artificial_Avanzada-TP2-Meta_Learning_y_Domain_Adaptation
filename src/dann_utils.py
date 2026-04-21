@@ -171,7 +171,11 @@ def plot_tsnes(models, models_name, test_data, samples_per_class, device, seed=4
         "Mnist": "tab:blue",
         "Mnist-M": "tab:orange",
     }
-
+    paths = {
+        0 : "../images/dann/baseline, tsne.png",
+        1: "../images/dann/baseline_ft_tsne.png",
+        2: "../images/dann/dann_tsne.png"
+    }
     cmap = plt.cm.get_cmap("tab10", 10)
     for i, model in enumerate(models):
-        plot_tsnes_model(all_embeddings[i], all_labels[i], all_domains[i], domain_colors, cmap)
+        plot_tsnes_model(all_embeddings[i], all_labels[i], all_domains[i], domain_colors, cmap, paths[i])

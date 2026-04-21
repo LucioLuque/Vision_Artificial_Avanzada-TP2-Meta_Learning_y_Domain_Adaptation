@@ -4,6 +4,7 @@ import torch.nn.functional as F
 from collections import OrderedDict
 import matplotlib.pyplot as plt
 from tqdm.auto import tqdm
+import os
 
 from utils import accuracy_from_logits
 
@@ -143,37 +144,27 @@ def evaluate_domains_maml(model, test_data, n_way, ks, q, episodes, inner_update
         accuracies[domain_name] = domain_accuracies
     return accuracies
 
-def plot_maml_history(history):
+def plot_maml_history(history, path):
     epochs = range(1, len(history["train_query_loss"]) + 1)
+    fontsize = 14
+    fig, axes = plt.subplots(1, 2, figsize=(16, 5))
+    axes[0].plot(epochs, history["train_support_acc_pre"], label="Train Support Acc Pre")
+    axes[0].plot(epochs, history["train_support_acc_post"], label="Train Support Acc Post")
+    axes[0].plot(epochs, history["val_support_acc_pre"], label="Val Support Acc Pre")
+    axes[0].plot(epochs, history["val_support_acc_post"], label="Val Support Acc Post")
+    axes[0].set_xlabel("Epoch", fontsize=fontsize)
+    axes[0].set_ylabel("Accuracy", fontsize=fontsize)
+    axes[0].set_ylabel("Accuracy")
+    axes[0].legend(fontsize=fontsize)
+    axes[0].grid(True)
 
-    #Query loss
-    plt.figure(figsize=(8, 5))
-    plt.plot(epochs, history["train_query_loss"], label="Train Query Loss", marker='o')
-    plt.plot(epochs, history["val_query_loss"], label="Val Query Loss", marker='o')
-    plt.xlabel("Epoch")
-    plt.ylabel("Loss")
-    plt.legend()
-    plt.grid(True, alpha=0.3)
-    plt.show()
-
-    #Query accuracy post
-    plt.figure(figsize=(8, 5))
-    plt.plot(epochs, history["train_query_acc_post"], label="Train Query Acc Post", marker='o')
-    plt.plot(epochs, history["val_query_acc_post"], label="Val Query Acc Post", marker='o')
-    plt.xlabel("Epoch")
-    plt.ylabel("Accuracy")
-    plt.legend()
-    plt.grid(True, alpha=0.3)
-    plt.show()
-
-    #Support accuracy pre y post
-    plt.figure(figsize=(8, 5))
-    plt.plot(epochs, history["train_support_acc_pre"], label="Train Support Acc Pre", marker='o')
-    plt.plot(epochs, history["train_support_acc_post"], label="Train Support Acc Post", marker='o')
-    plt.plot(epochs, history["val_support_acc_pre"], label="Val Support Acc Pre", marker='o')
-    plt.plot(epochs, history["val_support_acc_post"], label="Val Support Acc Post", marker='o')
-    plt.xlabel("Epoch")
-    plt.ylabel("Accuracy")
-    plt.legend()
-    plt.grid(True, alpha=0.3)
+    axes[1].plot(epochs, history["train_query_loss"], label="Train Query Loss")
+    axes[1].plot(epochs, history["val_query_loss"], label="Val Query Loss")
+    axes[1].set_xlabel("Epoch", fontsize=fontsize)
+    axes[1].set_ylabel("Loss", fontsize=fontsize)
+    axes[1].legend(fontsize=fontsize)
+    axes[1].grid(True)
+    plt.tight_layout()
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    plt.savefig(path, dpi=300, bbox_inches="tight")
     plt.show()

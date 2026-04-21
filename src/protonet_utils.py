@@ -86,16 +86,16 @@ def save_tsne_snapshot(model, images, labels, device, save_path, title, perplexi
         s=10,
         alpha=0.8,
     )
-    plt.colorbar(scatter, ticks=list(range(10)), label="Clase")
-    plt.title(title)
-    plt.xlabel("t-SNE dim 1")
-    plt.ylabel("t-SNE dim 2")
-    plt.tight_layout()
+    # plt.colorbar(scatter, ticks=list(range(10)), label="Clase")
+    # plt.title(title)
+    # plt.xlabel("t-SNE dim 1")
+    # plt.ylabel("t-SNE dim 2")
+    # plt.tight_layout()
 
-    os.makedirs(os.path.dirname(save_path), exist_ok=True)
-    plt.savefig(save_path, dpi=150, facecolor="white")
-    plt.show()
-    plt.close()
+    # os.makedirs(os.path.dirname(save_path), exist_ok=True)
+    # plt.savefig(save_path, dpi=150, facecolor="white")
+    # plt.show()
+    # plt.close()
     return emb_2d, y
 
 def train_protonet(model, train_sampler, val_sampler, optimizer, criterion, 
@@ -108,8 +108,8 @@ def train_protonet(model, train_sampler, val_sampler, optimizer, criterion,
         "val_loss": [],
         "val_support_acc": [],
         "val_query_acc": [],
-        "emb_labels": []
     }
+    emb_labels= []
 
     os.makedirs(tsne_dir, exist_ok=True)
 
@@ -123,7 +123,7 @@ def train_protonet(model, train_sampler, val_sampler, optimizer, criterion,
             save_path=os.path.join(tsne_dir, "tsne_epoch_0.png"),
             title="0",
         )
-        history["emb_labels"].append([emb_2d, y])
+        emb_labels.append([emb_2d, y])
 
 
     mid_epoch = epochs // 2
@@ -163,9 +163,9 @@ def train_protonet(model, train_sampler, val_sampler, optimizer, criterion,
                 save_path=os.path.join(tsne_dir, f"tsne_epoch_{epoch+1}.png"),
                 title=f"{epoch+1}",
             )
-            history["emb_labels"].append([emb_2d, y])
+            emb_labels.append([emb_2d, y])
 
-    return history
+    return history, emb_labels
 
 def eval_episode(model, sampler, device):
     model.eval()
