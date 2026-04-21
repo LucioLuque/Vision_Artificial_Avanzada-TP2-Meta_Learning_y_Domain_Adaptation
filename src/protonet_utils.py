@@ -96,6 +96,7 @@ def save_tsne_snapshot(model, images, labels, device, save_path, title, perplexi
     plt.savefig(save_path, dpi=150, facecolor="white")
     plt.show()
     plt.close()
+    return emb_2d, y
 
 def train_protonet(model, train_sampler, val_sampler, optimizer, criterion, 
                    device, epochs, episodes, tsne_images=None, tsne_labels=None,
@@ -107,13 +108,14 @@ def train_protonet(model, train_sampler, val_sampler, optimizer, criterion,
         "val_loss": [],
         "val_support_acc": [],
         "val_query_acc": [],
+        "emb_labels": []
     }
 
     os.makedirs(tsne_dir, exist_ok=True)
 
     # Snapshot inicial: antes de entrenar
     if tsne_images is not None and tsne_labels is not None:
-        save_tsne_snapshot(
+        emb_2d, y = save_tsne_snapshot(
             model=model,
             images=tsne_images,
             labels=tsne_labels,
@@ -121,6 +123,8 @@ def train_protonet(model, train_sampler, val_sampler, optimizer, criterion,
             save_path=os.path.join(tsne_dir, "tsne_epoch_0.png"),
             title="0",
         )
+        history["emb_labels"].append([emb_2d, y])
+
 
     mid_epoch = epochs // 2
 
@@ -151,7 +155,7 @@ def train_protonet(model, train_sampler, val_sampler, optimizer, criterion,
         })
 
         if (tsne_images is not None and tsne_labels is not None) and (epoch == mid_epoch - 1 or epoch == epochs - 1):
-            save_tsne_snapshot(
+            emb_2d, y = save_tsne_snapshot(
                 model=model,
                 images=tsne_images,
                 labels=tsne_labels,
@@ -159,6 +163,7 @@ def train_protonet(model, train_sampler, val_sampler, optimizer, criterion,
                 save_path=os.path.join(tsne_dir, f"tsne_epoch_{epoch+1}.png"),
                 title=f"{epoch+1}",
             )
+            history["emb_labels"].append([emb_2d, y])
 
     return history
 

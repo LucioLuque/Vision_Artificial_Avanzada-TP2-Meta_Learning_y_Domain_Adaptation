@@ -97,9 +97,7 @@ def train_maml(model, train_sampler, val_sampler, optimizer, meta_iterations, me
             "val_q_acc_post": f"{query_val_acc_post:.4f}",
         })
 
-
     return history
-
 
 def eval_episode(model, sampler, inner_updates, alpha, device):
     model.eval()

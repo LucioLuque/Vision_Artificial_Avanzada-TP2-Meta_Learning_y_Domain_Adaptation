@@ -1,7 +1,10 @@
 from tqdm.auto import tqdm
 import torch
 import torch.nn as nn
-import numpy as np  
+import numpy as np
+import matplotlib.pyplot as plt
+
+from utils import select_fixed_subset, get_embeddings_labels, plot_tsnes_model
 
 def evaluate(model, loader, device):
     model.eval()
@@ -147,9 +150,28 @@ def train_dann(model, train_source_loader, val_source_loader, train_target_loade
         })
     return history
 
+def plot_tsnes(models, models_name, test_data, samples_per_class, device, seed=42):
+    fixed_images_labels = {}
 
-def evaluate_dann(model, test_source_loader, test_target_loader, device):
-    s_acc = evaluate(model, test_source_loader, device)
-    d_acc = evaluate(model, test_target_loader, device)
+    for domain in test_data:
         
-    return s_acc, d_acc
+        images, labels = test_data[domain]
+        fixed_images, fixed_labels = select_fixed_subset(
+            images,
+            labels,
+            samples_per_class=samples_per_class,
+            seed=seed
+        )
+        fixed_images_labels[domain] = (fixed_images, fixed_labels)
+
+    
+    all_embeddings, all_labels, all_domains, all_models = get_embeddings_labels(models, models_name, fixed_images_labels, device)
+    
+    domain_colors = {
+        "Mnist": "tab:blue",
+        "Mnist-M": "tab:orange",
+    }
+
+    cmap = plt.cm.get_cmap("tab10", 10)
+    for i, model in enumerate(models):
+        plot_tsnes_model(all_embeddings[i], all_labels[i], all_domains[i], domain_colors, cmap)
