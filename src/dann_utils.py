@@ -172,7 +172,7 @@ def plot_tsnes(models, models_name, test_data, samples_per_class, device, seed=4
         "Mnist-M": "tab:orange",
     }
     paths = {
-        0 : "../images/dann/baseline, tsne.png",
+        0 : "../images/dann/baseline_tsne.png",
         1: "../images/dann/baseline_ft_tsne.png",
         2: "../images/dann/dann_tsne.png"
     }
