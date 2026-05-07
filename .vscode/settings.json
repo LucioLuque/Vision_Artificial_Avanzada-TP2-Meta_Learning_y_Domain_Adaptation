@@ -1,0 +1,20 @@
+{
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000,
+    "[latex]": {
+        "files.autoSave": "off"
+    },
+    // Ensure .tex files are recognized as LaTeX in case the workspace overrides file associations
+    "files.associations": {
+        "*.tex": "latex"
+    }
+}
+{
+    // Disable LaTeX Workshop auto build on save/changes for this workspace
+    "latex-workshop.latex.autoBuild.run": "never",
+    "latex-workshop.latex.autoBuild.interval": 0,
+    "latex-workshop.latex.autoBuild.onSave.enabled": false,
+    "latex-workshop.latex.autoBuild.onTexChange.enabled": false,
+    // Prevent other potential auto commands (just in case)
+    "files.autoSave": "off"
+}

@@ -1,0 +1,52 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx, amssymb, amsmath, float, multicol, apacite, multirow}
+\bibliographystyle{apacite}
+\usepackage[a4paper, left=2.5cm, right=2.5cm, top=20mm, bottom=20mm]{geometry}
+\usepackage{array}
+\usepackage{changepage}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{diagbox}
+\usepackage{footmisc}
+\usepackage[hyphens]{url}  % Habilita corte de línea y mejora cortes de URLs
+\usepackage[hidelinks]{hyperref}
+\usepackage{breakurl}      % permite cortar URLs largas en varias líneas (con algunos drivers)
+\Urlmuskip=0mu plus 1mu    % mejora la tolerancia al corte
+
+
+\providecommand{\abs}[1]{\lvert#1\rvert}
+\begin{document}
+
+\onecolumn
+\input{1.caratula}  % Incluye la carátula
+
+
+
+% Include the chapter files
+\begin{multicols}{2}
+\section{Introducción}
+\input{2.introduccion}   
+
+\section{Marco teórico}
+\input{3.marcoteorico}   
+
+\section{Desarrollo}
+\input{4.desarrollo}
+
+\end{multicols}
+% \newpage
+\section{Resultados}
+\input{5.resultados}
+
+\section{Conclusión}
+\input{6.conclusion}
+% \end{multicols}
+
+\newpage
+\section{Bibliografía}
+\input{7.bibliografia}
+
+\end{document}

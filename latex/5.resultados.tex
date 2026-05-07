@@ -1,0 +1,135 @@
+\subsection{Prototypical Networks}
+ \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/protonet/protonet_training.png}
+    \caption{caption}
+    \label{fig:protonet training}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/protonet/protonet_training_tsnes.png}
+    \caption{caption}
+    \label{fig:protonet training tsnes}
+\end{figure}
+
+¿Se forman clusters separados? ¿Cómo evoluciona la estructura a medida que avanza el entrenamiento?
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/protonet/acc_vs_ks.png}
+    \caption{caption}
+    \label{fig:protonet acc vs k}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/protonet/tsnes_domain_class.png}
+    \caption{caption}
+    \label{fig:protonet tsnes}
+\end{figure}
+
+¿Están los embeddings de los mismos dígitos cerca entre dominios? ¿Qué implica esto para la clasificación episódica cross-domain?
+
+\subsection{MAML y ProtoMAML}
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/maml/maml_training.png}
+    \caption{caption}
+    \label{fig:maml training}
+\end{figure}
+egistrar seis métricas: accuracies pre y post-adaptación en support, y post-adaptación
+en query, en entrenamiento y validación.
+Graficar la accuracy post-adaptación en validación durante el entrenamiento.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/protomaml/protomaml_training.png}
+    \caption{caption}
+    \label{fig:protomaml training}
+\end{figure}
+No lo piden
+
+
+\subsection{Prototypical Networks, ProtoMAML y ProtoMAML}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/compare_models/accuracies_ks.png}
+    \caption{caption}
+    \label{fig: compate_models}
+\end{figure}
+A cami le da mejor protomaml que todos
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/temp.png}
+    \caption{caption}
+    \label{fig: temp}
+\end{figure}
+
+Visualización del espacio latente comparativa: proyectar los embeddings del encoder para imágenes de MNIST, MNIST-M y SVHN en el mismo gráfico, usando el encoder de cada modelo. Colorear por dominio. ¿Qué modelo produce embeddings más cercanos entre dominios? ¿Se corresponde con la accuracy cross-domain?
+
+NOSE MUY BIEN COMO MOSTRARLOS ESTE ES SOLO UNO DE LOS MODELOS HABRIA QUE PREGUNTAR BIEN COMO 
+
+
+\subsection{DANN}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/dann/dann_baseline_training.png}
+    \caption{caption}
+    \label{fig:dann baseline trianing}
+\end{figure}
+
+Graficar en el mismo plot la loss de clasificación, la loss de dominio y la accuracy en MNIST-M a lo largo del entrenamiento, para DANN y el baseline. ¿Cómo evolucionan en relación la una con la otra?
+
+\begin{table}[h!]
+\centering
+
+\begin{tabular}{|l|c|c|c|}
+\hline
+ & MNIST (\%) & MNIST-M (\%) & SVHN (\%) \\
+\hline
+Baseline & 99.51 & 56.45 & 28.74\\
+\hline
+Baseline ft & 98.52 & 97.48 & 30.44\\
+\hline
+DANN & 99.19 & 88.69 & 33.76\\
+\hline
+\end{tabular}
+\caption{caption}
+\label{tab:tabla}
+\end{table}
+
+No piden ni SVHN ni Baseline ft, que hacemos?
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/dann/baseline_tsne.png}
+    \caption{caption}
+    \label{fig:baseline tsne}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/dann/baseline_ft_tsne.png}
+    \caption{caption}
+    \label{fig:baseline ft tsne}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/dann/dann_tsne.png}
+    \caption{caption}
+    \label{fig:dann tsne}
+\end{figure}
+
+SE PODRIAN JUNTAR LOS 3 EN UNO SOLO?
