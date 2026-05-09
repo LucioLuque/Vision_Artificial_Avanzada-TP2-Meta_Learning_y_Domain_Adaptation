@@ -5,23 +5,96 @@ SVHN
 Puede ser con la tabla del informe
 
 \subsection{Prototypical Networks}
-Las Prototypical Networks (ProtoNets, Snell et al. 2017)
+% Las Prototypical Networks (ProtoNets, Snell et al. 2017)
+Las \textit{Prototypical Networks} (ProtoNets), propuestas por \textit{Snell et al.} (2017), son un método de \textit{metric-based meta-learning} diseñado para tareas de clasificación \textit{few-shot}. La idea principal consiste en aprender un espacio de embeddings donde ejemplos pertenecientes a una misma clase se agrupen cercanamente.
 
-\subsection{MAML}
-MAML (Model-Agnostic Meta-Learning, Finn et al. 2017)
+Durante cada episodio de entrenamiento, el modelo recibe un conjunto de soporte (\textit{support set}) y un conjunto de consulta (\textit{query set}).
+Para cada clase $n$, se calcula un prototipo como el promedio de los embeddings de las muestras de soporte:
 
 \begin{equation}
-\mathcal{L}^{\text{EWC}} =
-\mathcal{L}_{\text{CE}}(y,\hat{y}) +
-\frac{\lambda}{2}\sum_i F_i \left(\theta_i - \theta_i^{*}\right)^2,
+\mathbf{c}_n = \frac{1}{K}\sum_{(x,y)\in D^{\text{tr}} y=n} f_\theta(\mathbf{x}),
 \end{equation}
 
+donde $f_\theta$ representa la red de embeddings parametrizada por $\theta$, $K$ es el número de muestras de soporte por clase, y $D^{\text{tr}}$ es el conjunto de soporte.
+
+Luego, la probabilidad de que una imagen de query $x$ pertenezca a la clase $n$ es:
+
+\begin{equation}
+p_\theta(y=n|\mathbf{x}) =
+\frac{
+\exp\left(-\|\left(f_\theta(\mathbf{x})-\mathbf{c}_n\right)\|^2\right)
+}{
+\sum_{n'} \exp\left(-\|\left(f_\theta(\mathbf{x})-\mathbf{c}_{n'}\right)\|^2\right)
+}.
+\end{equation}
+
+% ProtoNets presentan entrenamiento estable y bajo costo computacional, siendo particularmente efectivas en escenarios de pocos ejemplos y cambios moderados de dominio.
+
+
+\subsection{MAML}
+\textit{Model-Agnostic Meta-Learning} (MAML), propuesto por \textit{Finn et al.} (2017), es un enfoque de 
+\textit{optimization-based meta-learning} cuyo objetivo es aprender una inicialización de parámetros capaz
+ de adaptarse rápidamente a nuevas tareas mediante unas pocas iteraciones de descenso por gradiente.
+
+Durante cada episodio, el modelo realiza una adaptación interna utilizando el conjunto de soporte:
+
+\begin{equation}
+\theta'_i = \theta - \alpha \nabla_\theta
+\mathcal{L}_{\mathcal{T}_i}^{support}(\theta),
+\end{equation}
+
+donde $\alpha$ es la tasa de aprendizaje interna y $\theta'_i$ representa los parámetros adaptados para la tarea $\mathcal{T}_i$.
+
+Posteriormente, se evalúa el desempeño sobre el conjunto de consulta y se optimizan los parámetros originales minimizando:
+
+\begin{equation}
+\min_\theta \sum_{\mathcal{T}_i}
+\mathcal{L}_{\mathcal{T}_i}^{query}(\theta'_i).
+\end{equation}
+
+A diferencia de métodos basados en métricas, MAML aprende explícitamente cómo adaptarse mediante gradientes, permitiendo una rápida especialización a nuevas tareas. Sin embargo, el entrenamiento puede resultar inestable y computacionalmente costoso debido al cálculo de gradientes de segundo orden.
 
 \subsection{ProtoMAML}
-ProtoMAML (Triantafillou et al. 2020)
 
+ProtoMAML, propuesto por \textit{Triantafillou et al.} (2020), combina ideas de Prototypical Networks y MAML. El objetivo es aprovechar la estabilidad de los métodos métricos junto con la capacidad de adaptación rápida basada en optimización.
 
+En ProtoMAML, los prototipos calculados a partir del conjunto de soporte se utilizan para inicializar dinámicamente la capa clasificadora antes de realizar las actualizaciones internas de MAML. Dados los prototipos $\mathbf{p}_c$, los pesos y sesgos del clasificador se inicializan como:
+
+\begin{equation}
+\mathbf{w}_c = 2\mathbf{p}_c,
+\end{equation}
+
+\begin{equation}
+b_c = -\|\mathbf{p}_c\|^2.
+\end{equation}
+
+Luego, el modelo realiza adaptación mediante descenso por gradiente sobre el conjunto de soporte, de manera similar a MAML.
+
+Esta combinación permite partir de representaciones más informativas y mejorar la convergencia en escenarios \textit{few-shot}, especialmente cuando existen cambios de dominio entre tareas.
 
 \subsection{DANN}
-La Domain-Adversarial
-Neural Network (DANN, Ganin et al. 2016)
+
+La \textit{Domain-Adversarial Neural Network} (DANN), propuesta por \textit{Ganin et al.} (2016), es un método de adaptación de dominio cuyo objetivo es aprender representaciones invariantes al dominio.
+
+La arquitectura consta de tres componentes principales:
+
+\begin{itemize}
+    \item Un extractor de características.
+    \item Un clasificador de etiquetas.
+    \item Un clasificador de dominio.
+\end{itemize}
+
+El extractor de características se entrena para minimizar simultáneamente el error de clasificación y maximizar el error del clasificador de dominio. Esto se logra mediante una capa denominada \textit{Gradient Reversal Layer} (GRL), que invierte el signo del gradiente durante la retropropagación.
+
+La función objetivo puede expresarse como:
+
+\begin{equation}
+\mathcal{L}_{DANN} =
+\mathcal{L}_{task}
+-
+\lambda \mathcal{L}_{domain},
+\end{equation}
+
+donde $\mathcal{L}_{task}$ corresponde a la pérdida de clasificación principal y $\mathcal{L}_{domain}$ a la pérdida del discriminador de dominio.
+
+El objetivo es obtener embeddings que contengan información útil para la clasificación, pero que no permitan distinguir entre dominios fuente y objetivo. Esto favorece la generalización bajo \textit{domain shift}.

@@ -24,37 +24,35 @@ protonet:
 
 maml:
   n_way: 5
-  k_shot: 5
+  k_shot: 1
   q_query: 15
 
-  meta_batch_size: 8
-  inner_updates: 4
-  meta_iterations: 200
+  meta_batch_size: 16
+  inner_updates: 1
+  meta_iterations: 3000
   
   in_channels: 3
   hidden_dim: 64
   embedding_dim: 64
   
-  alpha: 0.05 #inner lr
-  beta: 0.001 #meta lr
-  
-  # evalute_episodes: 100
+  alpha: 0.01 #inner lr
+  beta: 0.0005 #meta lr
 
 protomaml:
   n_way: 5
-  k_shot: 5
+  k_shot: 1
   q_query: 15
 
-  meta_batch_size: 8
-  inner_updates: 4
-  meta_iterations: 200
+  meta_batch_size: 16
+  inner_updates: 1
+  meta_iterations: 4000
   
   in_channels: 3
   hidden_dim: 64
   embedding_dim: 64
   
-  alpha: 0.0054 #inner lr
-  beta: 0.001 #meta lr
+  alpha: 0.0005 #inner lr
+  beta: 0.0003 #meta lr
 
 dann_baseline:
   in_channels: 3

@@ -61,6 +61,7 @@ def run_meta_batch(model, sampler, optimizer, meta_batch_size, inner_updates, al
         meta_loss /= meta_batch_size
         optimizer.zero_grad()
         meta_loss.backward()
+        # torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
         optimizer.step()
 
     return query_loss_sum/meta_batch_size, support_acc_pre_sum/meta_batch_size, support_acc_post_sum/meta_batch_size, query_acc_post_sum/meta_batch_size
