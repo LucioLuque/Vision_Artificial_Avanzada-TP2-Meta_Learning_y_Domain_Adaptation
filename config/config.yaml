@@ -24,7 +24,7 @@ protonet:
 
 maml:
   n_way: 5
-  k_shot: 1
+  k_shot: 5
   q_query: 15
 
   meta_batch_size: 8
@@ -42,7 +42,7 @@ maml:
 
 protomaml:
   n_way: 5
-  k_shot: 1
+  k_shot: 5
   q_query: 15
 
   meta_batch_size: 8
