@@ -25,7 +25,7 @@ def run_episode(model, sampler, inner_updates, alpha, device, train):
     support_labels = support_labels.to(device)
     query_images = query_images.to(device)
     query_labels = query_labels.to(device)
-
+    
     init_params = model.get_parameters(support_images, support_labels)
 
     support_logits_pre = model(support_images, init_params)

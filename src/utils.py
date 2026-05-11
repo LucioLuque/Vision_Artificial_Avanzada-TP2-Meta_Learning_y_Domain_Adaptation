@@ -53,11 +53,23 @@ def plot_accuracies_model(ks, accuracies, ax):
     ax.grid(True)
     return ax
 
+def plot_accuracies_dataset(dataset, ks, accuracies, ax):
+
+    for i, model in enumerate(["ProtoNet", "MAML", "ProtoMAML"]):
+        ax.plot(ks, accuracies[i][dataset], marker="o", label=f"{model}")
+
+    ax.set_xlabel("K-shot", fontsize=14)
+    ax.set_ylabel("Accuracy", fontsize=14)
+    ax.set_xticks(ks)
+    ax.legend(fontsize=14)
+    ax.grid(True)
+    ax.set_title(f"{dataset}", fontsize=14)
+    return ax
+
 def plot_accuracies_all_models(ks, accuracies, models_name):
     fig, axes = plt.subplots(1, len(models_name), figsize=(15, 5), sharey=True)
-    for i in range(len(models_name)):
-        plot_accuracies_model(ks, accuracies[i], axes[i])
-        axes[i].set_title(f"{models_name[i]}", fontsize=14)
+    for i, dataset in enumerate(["Mnist", "Mnist-M", "Svhn"]):
+        plot_accuracies_dataset(dataset, ks, accuracies, axes[i])
         if i != 0:
             axes[i].set_ylabel("")
     fig.tight_layout()
