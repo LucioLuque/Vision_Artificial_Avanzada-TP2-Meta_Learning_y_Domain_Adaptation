@@ -28,8 +28,8 @@ maml:
   q_query: 15
 
   meta_batch_size: 1
-  inner_updates: 5
-  meta_iterations: 6000
+  inner_updates: 2
+  meta_iterations: 10000
   
   in_channels: 3
   hidden_dim: 64
@@ -44,8 +44,8 @@ protomaml:
   q_query: 15
 
   meta_batch_size: 1
-  inner_updates: 5
-  meta_iterations: 6000
+  inner_updates: 1
+  meta_iterations: 10000
   
   in_channels: 3
   hidden_dim: 64
