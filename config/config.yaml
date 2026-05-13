@@ -35,8 +35,8 @@ maml:
   hidden_dim: 64
   embedding_dim: 64
   
-  alpha: 0.01 #inner lr
-  beta: 0.001 #meta lr
+  alpha: 0.009 #inner lr
+  beta: 0.0009 #meta lr
 
 protomaml:
   n_way: 5
@@ -64,24 +64,15 @@ dann_baseline:
   lr: 0.001 
   epochs: 150
 
-dann_without_grl:
-  in_channels: 3
-  hidden_dim: 64
-  embedding_dim: 64
-
-  batch_size: 512
-  num_workers: 0
-  lr: 0.001 
-  epochs: 150
-
 dann:
   in_channels: 3
   hidden_dim: 64
   embedding_dim: 64
+
   batch_size: 512
   num_workers: 0
   lr: 0.001
-  epochs: 600
+  epochs: 300
 
 compare_experiments:
   n_way: 5
