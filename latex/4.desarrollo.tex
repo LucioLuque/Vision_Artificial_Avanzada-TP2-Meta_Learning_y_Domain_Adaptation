@@ -1,0 +1,17 @@
+Por recomendación de la cátedra, el encoder compartido entre todos los modelos testeados parte de una arquitectura ConvNet de 4 bloques. El único detalle es un cambio de normalización por bache a por grupos, dado que se encuentra mejor rendimiento de MAML y ProtoMAML con bache de tamaño 1, y la normalización por grupos es más efectiva en baches pequeños. En todos los experimentos, el encoder recibió imágenes de tres canales, utilizó una dimensión oculta y de embedding de 64.
+
+Los métodos de meta-learning se entrenaron solamente sobre MNIST. Se incluyen MNIST-M y SVHN para reportar accuracy de support y validation, así como las proyecciones de t-SNE de los embeddings del modelo resultante. MAML también incluye análisis adicionales relacionados al efecto del inner y outer loop sobre la accuracy.
+
+En cuanto a los hiperparámetros, los valores de $N$, $K$ y $Q$ siguieron la configuración definida por la cátedra. Todos los modelos episódicos trabajan con una configuración 5-way y $Q=15$, mientras que el valor de $K$ varía según el modelo: ProtoNet fue entrenado en 5-shot, mientras que MAML y ProtoMAML en 1-shot.
+
+En el caso de ProtoNet, el modelo fue entrenado durante 200 épocas de 100 episodios cada una, con un \textit{learning rate} de $0.001$. En cambio, MAML y ProtoMAML fueron entrenados con un tamaño de meta bache de 1, durante 10.000 meta-iteraciones.
+
+MAML realizó dos actualizaciones internas antes de la actualización externa, con un learning rate interno de $0.009$ y uno externo de $0.0009$. Por su parte, ProtoMAML realizó una única actualización interna antes de la actualización externa, con un learning rate interno de $0.01$ y uno externo de $0.001$.
+
+Además, para analizar el efecto de la cantidad de ejemplos disponibles por clase, se evaluó el desempeño de los modelos variando $K$ en los valores $1, 2, 4, 8$ y $16$, para 1000 episodios sobre el set de testeo.
+
+Para domain adaptation, se entrenan tres versiones de DANN: una estándar, una sin discriminador para usar como \textit{baseline} y un baseline \textit{finetuned}. MNIST-M se incluye durante el entrenamiento para GRL en DANN normal y para \textit{finetuning} del baseline.
+
+Ambos baselines sirven como referencia para medir el rendimiento de DANN: el baseline normal es el \textit{lower bound}, donde solo se puede entrenar con los datos de MNIST; el baseline finetuned es el \textit{upper bound}, que usa las etiquetas del dominio objetivo para ajustar. En comparación, DANN es un punto medio ya que usa datos no etiquetados del dominio objetivo, un caso más realista donde la recolección es fácil pero el etiquetado es costoso.
+
+Los tres entrenamientos se realizaron con un tamaño de bache de 512 y un learning rate de $0.001$. El baseline fue entrenado durante 150 épocas, luego se aplicó fine-tuning durante 150 épocas adicionales, mientras que el DANN estándar fue entrenado durante 300 épocas.

@@ -1,2 +1,7 @@
-% 2.introduccion.tex
-Intro
+El objetivo de este trabajo es estudiar y comparar distintos métodos de \textit{meta-learning} y \textit{domain adaptation} aplicados a tareas de clasificación de dígitos bajo escenarios de pocos ejemplos y cambio de dominio. Para ello, se trabajó con tres conjuntos de datos visualmente diferentes: MNIST, MNIST-M y SVHN. Si bien los tres contienen dígitos del 0 al 9, presentan diferencias importantes en términos de color, textura, fondo y contexto visual, lo que permite analizar cómo se comportan los modelos cuando son evaluados sobre dominios distintos al utilizado durante el entrenamiento.
+
+En la primera parte del trabajo se evaluaron métodos de \textit{few-shot learning}, en particular ProtoNet, MAML y ProtoMAML. Estos modelos fueron entrenados de manera episódica, simulando tareas de clasificación con pocos ejemplos por clase. El análisis se centró no solo en el redimiento sobre el dominio fuente, sino también en la capacidad de generalización hacia MNIST-M y SVHN.
+
+En la segunda parte se abordó el problema de \textit{domain adaptation} mediante una arquitectura DANN. El propósito fue analizar si el entrenamiento adversarial, a través de la \textit{Gradient Reversal Layer}, permite aprender representaciones más invariantes entre dominios y mejorar la clasificación sobre MNIST-M.
+
+El informe se estructura en cuatro partes: un marco teórico que expone los conceptos necesarios para comprender el estudio; el desarrollo de los distintos experimentos; los resultados obtenidos para los modelos implementados, incluyendo comparaciones y análisis; y, finalmente, las conclusiones basadas en los resultados y consideraciones para futuros trabajos.

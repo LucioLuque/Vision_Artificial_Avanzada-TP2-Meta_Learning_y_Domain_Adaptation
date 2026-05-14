@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.4.20)  9 MAY 2026 18:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.4.20)  14 MAY 2026 18:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -8,8 +8,8 @@ entering extended mode
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-01-21> (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
-File: size12.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
 )
 \c@part=\count185
 \c@section=\count186
@@ -454,26 +454,26 @@ LaTeX Info: Redefining \% on input line 26.
 )
 \openout1 = `informe.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Info: Redefining \. on input line 21.
-LaTeX Info: Redefining \% on input line 21.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Info: Redefining \. on input line 19.
+LaTeX Info: Redefining \% on input line 19.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count312
@@ -518,12 +518,12 @@ LaTeX Info: Redefining \BHBI on input line 139.
 * \topmargin=-52.36449pt
 * \headheight=12.0pt
 * \headsep=25.0pt
-* \topskip=12.0pt
+* \topskip=10.0pt
 * \footskip=30.0pt
-* \marginparwidth=35.0pt
-* \marginparsep=10.0pt
+* \marginparwidth=57.0pt
+* \marginparsep=11.0pt
 * \columnsep=10.0pt
-* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
@@ -536,7 +536,7 @@ LaTeX Info: Redefining \BHBI on input line 139.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring OFF on input line 21.
+Package hyperref Info: Link coloring OFF on input line 19.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
@@ -546,120 +546,146 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count319
 )
-LaTeX Info: Redefining \ref on input line 21.
-LaTeX Info: Redefining \pageref on input line 21.
-LaTeX Info: Redefining \nameref on input line 21.
+LaTeX Info: Redefining \ref on input line 19.
+LaTeX Info: Redefining \pageref on input line 19.
+LaTeX Info: Redefining \nameref on input line 19.
  (./informe.out) (./informe.out)
 \@outlinefile=\write3
 \openout3 = `informe.out'.
 
  (./1.caratula.tex) (./2.introduccion.tex) (./3.marcoteorico.tex
-LaTeX Font Info:    Trying to load font information for U+msa on input line 12.
+<../images/domains.png, id=68, 433.62pt x 112.92188pt>
+File: ../images/domains.png Graphic file (type png)
+<use ../images/domains.png>
+Package pdftex.def Info: ../images/domains.png  used on input line 4.
+(pdftex.def)             Requested size: 222.62206pt x 57.97534pt.
+ [1
+
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Font Info:    Trying to load font information for U+msa on input line 16.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 12.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 16.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (5.12782pt too wide) detected at line 29
-[][]\OML/cmm/m/it/12 p[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 y \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 n\OMS/cmsy/m/n/12 j\OT1/cmr/bx/n/12 x\OT1/cmr/m/n/12 ) = []\OML/cmm/m/it/12 :
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 19.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+
+Package multicol Warning: I moved some lines to the next page.
+(multicol)                Footnotes on page 2 might be wrong on input line 70.
+
+[2 <../images/domains.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 85--86
+[]\T1/cmr/m/n/10 La \T1/cmr/m/it/10 Domain-Adversarial Neu-ral Net-work
  []
 
+) (./4.desarrollo.tex
 
-Overfull \hbox (4.77927pt too wide) in paragraph at lines 35--38
-[]\T1/cmr/m/it/12 Model-Agnostic Meta-Learning \T1/cmr/m/n/12 (MAML),
- []
+Package multicol Warning: I moved some lines to the next page.
+(multicol)                Footnotes on page 3 might be wrong on input line 16.
 
-[1
-
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]) (./4.desarrollo.tex) (./5.resultados.tex
-<../images/protonet/protonet_training.png, id=92, 1004.3121pt x 425.9112pt>
+[3]) (./5.resultados.tex
+<../images/protonet/protonet_training.png, id=131, 715.2321pt x 281.3712pt>
 File: ../images/protonet/protonet_training.png Graphic file (type png)
 <use ../images/protonet/protonet_training.png>
-Package pdftex.def Info: ../images/protonet/protonet_training.png  used on input line 4.
-(pdftex.def)             Requested size: 364.19667pt x 154.45221pt.
- [2]
-<../images/protonet/protonet_training_tsnes.png, id=102, 852.0633pt x 354.123pt>
+Package pdftex.def Info: ../images/protonet/protonet_training.png  used on input line 22.
+(pdftex.def)             Requested size: 364.19667pt x 143.27415pt.
+<../images/protonet/protonet_training_tsnes.png, id=133, 852.0633pt x 354.123pt>
 File: ../images/protonet/protonet_training_tsnes.png Graphic file (type png)
 <use ../images/protonet/protonet_training_tsnes.png>
-Package pdftex.def Info: ../images/protonet/protonet_training_tsnes.png  used on input line 12.
+Package pdftex.def Info: ../images/protonet/protonet_training_tsnes.png  used on input line 33.
 (pdftex.def)             Requested size: 364.19667pt x 151.36752pt.
-<../images/protonet/acc_vs_ks.png, id=103, 503.2401pt x 326.9013pt>
+
+
+LaTeX Warning: Reference `fig:protonent training tsnes' on page 4 undefined on input line 40.
+
+[4 <../images/protonet/protonet_training.png> <../images/protonet/protonet_training_tsnes.png>]
+<../images/protonet/acc_vs_ks.png, id=143, 503.2401pt x 326.9013pt>
 File: ../images/protonet/acc_vs_ks.png Graphic file (type png)
 <use ../images/protonet/acc_vs_ks.png>
-Package pdftex.def Info: ../images/protonet/acc_vs_ks.png  used on input line 22.
-(pdftex.def)             Requested size: 364.19667pt x 236.58585pt.
- [3 <../images/protonet/protonet_training.png> <../images/protonet/protonet_training_tsnes.png>]
-<../images/protonet/tsnes_domain_class.png, id=112, 1118.9805pt x 498.663pt>
+Package pdftex.def Info: ../images/protonet/acc_vs_ks.png  used on input line 44.
+(pdftex.def)             Requested size: 273.14923pt x 177.44188pt.
+
+
+LaTeX Warning: Reference `fig:protonent training tsnes' on page 5 undefined on input line 51.
+
+<../images/protonet/tsnes_domain_class.png, id=146, 1118.9805pt x 498.663pt>
 File: ../images/protonet/tsnes_domain_class.png Graphic file (type png)
 <use ../images/protonet/tsnes_domain_class.png>
-Package pdftex.def Info: ../images/protonet/tsnes_domain_class.png  used on input line 29.
+Package pdftex.def Info: ../images/protonet/tsnes_domain_class.png  used on input line 59.
 (pdftex.def)             Requested size: 364.19667pt x 162.29942pt.
-<../images/maml/maml_training.png, id=113, 1148.8521pt x 353.6412pt>
+[5 <../images/protonet/acc_vs_ks.png> <../images/protonet/tsnes_domain_class.png>]
+<../images/maml/maml_training.png, id=157, 1148.8521pt x 353.6412pt>
 File: ../images/maml/maml_training.png Graphic file (type png)
 <use ../images/maml/maml_training.png>
-Package pdftex.def Info: ../images/maml/maml_training.png  used on input line 42.
+Package pdftex.def Info: ../images/maml/maml_training.png  used on input line 79.
 (pdftex.def)             Requested size: 364.19667pt x 112.10445pt.
- [4 <../images/protonet/acc_vs_ks.png> <../images/protonet/tsnes_domain_class.png> <../images/maml/maml_training.png>]
-<../images/protomaml/protomaml_training.png, id=124, 1148.8521pt x 353.6412pt>
-File: ../images/protomaml/protomaml_training.png Graphic file (type png)
-<use ../images/protomaml/protomaml_training.png>
-Package pdftex.def Info: ../images/protomaml/protomaml_training.png  used on input line 52.
-(pdftex.def)             Requested size: 364.19667pt x 112.10445pt.
-<../images/compare_models/accuracies_ks.png, id=125, 1076.5821pt x 353.6412pt>
+<../images/compare_models/accuracies_ks.png, id=160, 1076.5821pt x 353.6412pt>
 File: ../images/compare_models/accuracies_ks.png Graphic file (type png)
 <use ../images/compare_models/accuracies_ks.png>
-Package pdftex.def Info: ../images/compare_models/accuracies_ks.png  used on input line 62.
-(pdftex.def)             Requested size: 364.19667pt x 119.63203pt.
-<../images/temp.png, id=126, 1396.0155pt x 714.7503pt>
-File: ../images/temp.png Graphic file (type png)
-<use ../images/temp.png>
-Package pdftex.def Info: ../images/temp.png  used on input line 70.
-(pdftex.def)             Requested size: 364.19667pt x 186.46326pt.
- [5 <../images/protomaml/protomaml_training.png> <../images/compare_models/accuracies_ks.png> <../images/temp.png>]
-<../images/dann/dann_baseline_training.png, id=137, 1076.5821pt x 354.123pt>
+Package pdftex.def Info: ../images/compare_models/accuracies_ks.png  used on input line 108.
+(pdftex.def)             Requested size: 409.71692pt x 134.5847pt.
+ [6 <../images/maml/maml_training.png> <../images/compare_models/accuracies_ks.png>]
+<../images/compare_models/models_tsnes.png, id=172, 1437.9321pt x 496.9767pt>
+File: ../images/compare_models/models_tsnes.png Graphic file (type png)
+<use ../images/compare_models/models_tsnes.png>
+Package pdftex.def Info: ../images/compare_models/models_tsnes.png  used on input line 121.
+(pdftex.def)             Requested size: 364.19667pt x 125.87425pt.
+<../images/dann/dann_training_loss.png, id=175, 715.2321pt x 281.853pt>
+File: ../images/dann/dann_training_loss.png Graphic file (type png)
+<use ../images/dann/dann_training_loss.png>
+Package pdftex.def Info: ../images/dann/dann_training_loss.png  used on input line 138.
+(pdftex.def)             Requested size: 364.19667pt x 143.51949pt.
+<../images/dann/dann_baseline_training.png, id=177, 1076.5821pt x 354.123pt>
 File: ../images/dann/dann_baseline_training.png Graphic file (type png)
 <use ../images/dann/dann_baseline_training.png>
-Package pdftex.def Info: ../images/dann/dann_baseline_training.png  used on input line 84.
+Package pdftex.def Info: ../images/dann/dann_baseline_training.png  used on input line 151.
 (pdftex.def)             Requested size: 364.19667pt x 119.79503pt.
-<../images/dann/baseline_tsne.png, id=138, 1396.0155pt x 714.7503pt>
+ [7 <../images/compare_models/models_tsnes.png> <../images/dann/dann_training_loss.png>]
+<../images/dann/baseline_tsne.png, id=189, 1396.0155pt x 714.7503pt>
 File: ../images/dann/baseline_tsne.png Graphic file (type png)
 <use ../images/dann/baseline_tsne.png>
-Package pdftex.def Info: ../images/dann/baseline_tsne.png  used on input line 114.
+Package pdftex.def Info: ../images/dann/baseline_tsne.png  used on input line 180.
 (pdftex.def)             Requested size: 364.19667pt x 186.46326pt.
-<../images/dann/baseline_ft_tsne.png, id=139, 1396.0155pt x 714.7503pt>
+<../images/dann/baseline_ft_tsne.png, id=190, 1396.0155pt x 714.7503pt>
 File: ../images/dann/baseline_ft_tsne.png Graphic file (type png)
 <use ../images/dann/baseline_ft_tsne.png>
-Package pdftex.def Info: ../images/dann/baseline_ft_tsne.png  used on input line 122.
+Package pdftex.def Info: ../images/dann/baseline_ft_tsne.png  used on input line 188.
 (pdftex.def)             Requested size: 364.19667pt x 186.46326pt.
- [6 <../images/dann/dann_baseline_training.png> <../images/dann/baseline_tsne.png>]
-<../images/dann/dann_tsne.png, id=149, 1396.0155pt x 714.7503pt>
+ [8 <../images/dann/dann_baseline_training.png> <../images/dann/baseline_tsne.png>]
+<../images/dann/dann_tsne.png, id=200, 1396.0155pt x 714.7503pt>
 File: ../images/dann/dann_tsne.png Graphic file (type png)
 <use ../images/dann/dann_tsne.png>
-Package pdftex.def Info: ../images/dann/dann_tsne.png  used on input line 130.
+Package pdftex.def Info: ../images/dann/dann_tsne.png  used on input line 196.
 (pdftex.def)             Requested size: 364.19667pt x 186.46326pt.
-) (./6.conclusion.tex) [7 <../images/dann/baseline_ft_tsne.png> <../images/dann/dann_tsne.png>] (./7.bibliografia.tex) [8] (./informe.aux
+) (./6.conclusion.tex [9 <../images/dann/baseline_ft_tsne.png> <../images/dann/dann_tsne.png>]) [10] (./7.bibliografia.tex) [11] (./informe.aux
 LaTeX Info: Redefining \. on input line 26.
 LaTeX Info: Redefining \% on input line 26.
 )
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `informe.out' has not changed.
-(rerunfilecheck)             Checksum: 2E3A5102D97522E114B2E4E3136CDF9B;1857.
+(rerunfilecheck)             Checksum: 39CE8B09BA43BB5B466463628E4E7B80;2082.
  ) 
 Here is how much of TeX's memory you used:
- 14447 strings out of 478287
- 231692 string characters out of 5849289
- 548773 words of memory out of 5000000
- 32340 multiletter control sequences out of 15000+600000
- 483996 words of font info for 61 fonts, out of 8000000 for 9000
+ 14517 strings out of 478287
+ 233088 string characters out of 5849289
+ 555156 words of memory out of 5000000
+ 32386 multiletter control sequences out of 15000+600000
+ 488026 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,9n,63p,960b,526s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0600.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb>
-Output written on informe.pdf (8 pages, 12347857 bytes).
+ 60i,10n,63p,869b,535s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0500.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0600.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb>
+Output written on informe.pdf (11 pages, 12118890 bytes).
 PDF statistics:
- 261 PDF objects out of 1000 (max. 8388607)
- 185 compressed objects within 2 object streams
- 44 named destinations out of 1000 (max. 500000)
- 181 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 348 PDF objects out of 1000 (max. 8388607)
+ 255 compressed objects within 3 object streams
+ 56 named destinations out of 1000 (max. 500000)
+ 194 words of extra memory for PDF output out of 10000 (max. 10000000)
 

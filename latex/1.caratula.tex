@@ -1,35 +1,37 @@
-% \begin{titlepage}
-    \begin{center}
-        \vspace*{0.5cm}
-        {\Huge\textbf{Titulo}}
-        
-        \vspace{0.2cm}
-        
-        {\Large Lucio Luque Materazzi, Teo Manuel Kaucher}
-
-        \vspace{0.3cm}
-        
-        {\Large lluquematerazzi@udesa.edu.ar \\ tkaucher@udesa.edu.ar}
+\begin{center}
+    \vspace*{0.5cm}
+    {\Huge\textbf{Estudio de métodos de Meta-Learning y Domain Adaptation}}
     
-        \vspace{0.3 cm}
+    \vspace{0.2cm}
+    
+    {\Large Lucio Luque Materazzi, Teo Manuel Kaucher}
 
-        {\Large Ingeniería en Inteligencia Artificial}
+    \vspace{0.3cm}
+    
+    {\Large lluquematerazzi@udesa.edu.ar \\ tkaucher@udesa.edu.ar}
 
-        \Large I309 Visión Artificial Avanzada
-        
-        \vspace{0.5cm}
+    \vspace{0.3 cm}
 
-        Otoño 2026
-        
-        \vspace{0.5cm}
+    {\Large Ingeniería en Inteligencia Artificial}
 
-        \begin{abstract}
-        Resumeeen
-        % En este trabajo se estudió el problema del aprendizaje continuo sobre Seq-CIFAR-10, una versión secuencial de CIFAR-10 dividida en cinco tareas de dos clases cada una. El objetivo principal fue analizar el impacto del olvido catastrófico al entrenar un modelo de manera progresiva y comparar distintas estrategias para mitigarlo en los escenarios Task-Incremental Learning (TIL) y Class-Incremental Learning (CIL). Para ello, se evaluaron cuatro enfoques: Fine-Tuning Naïve, como modelo base de referencia inferior; Elastic Weight Consolidation (EWC), basado en regularización de parámetros; Learning without Forgetting (LwF), basado en destilación de conocimiento; y Co2L, que combina aprendizaje contrastivo, replay buffer y destilación de relaciones entre muestras.
+    \Large I309 Visión Artificial Avanzada
+    
+    \vspace{0.5cm}
 
-        % Los resultados muestran que EWC y LwF no lograron mejorar el desempeño respecto del modelo Naïve en la configuración experimental utilizada. En particular, en el escenario CIL los tres métodos sufrieron un completo olvido de las tareas anteriores. En cambio, Co2L presentó una mejora sustancial tanto en TIL (92.11\% de accuracy) como en CIL (72.82\% de accuracy). Estos resultados sugieren que, para este problema, la preservación de representaciones mediante aprendizaje contrastivo y el uso de memoria de repetición resultan más efectivos que la simple regularización de pesos o la destilación sobre logits.
-        \end{abstract}
+    Otoño 2026
+    
+    \vspace{0.5cm}
 
-        \vspace{0.5cm}
-          
-    \end{center}
+    \begin{abstract}
+    En este trabajo se estudian y comparan distintos métodos de meta-learning y domain adaptation aplicados a tareas de clasificación de dígitos bajo escenarios de pocos ejemplos y cambio de dominio. Para ello, se utilizan los datasets MNIST, MNIST-M y SVHN, que comparten las mismas clases pero presentan diferencias visuales significativas en color, textura, fondo y contexto.
+    
+    En primer lugar, se evalúan modelos de few-shot meta learning, específicamente ProtoNet, MAML y ProtoMAML, entrenados de manera episódica sobre MNIST y luego analizados en dominios externos. Los resultados muestran que ProtoNet y ProtoMAML presentan mayor robustez frente al cambio de dominio que MAML, especialmente en MNIST-M y SVHN.
+    
+    En segundo lugar, se implementa una arquitectura DANN para estudiar si el entrenamiento adversarial mediante una Gradient Reversal Layer permite aprender representaciones más invariantes entre MNIST y MNIST-M. Los experimentos muestran que DANN mejora significativamente el rendimiento sobre el dominio objetivo respecto del baseline. 
+    
+    Finalmente, el análisis de los embeddings mediante t-SNE permite observar que los métodos basados en prototipos y DANN generan representaciones más alineadas entre dominios, aunque SVHN continúa siendo el conjunto más desafiante debido a su mayor diferencia visual respecto de MNIST.
+    \end{abstract}
+
+    \vspace{0.15cm}
+      
+\end{center}
