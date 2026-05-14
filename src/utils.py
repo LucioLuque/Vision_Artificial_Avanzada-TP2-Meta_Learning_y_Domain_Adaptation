@@ -79,11 +79,8 @@ def plot_accuracies_all_models(ks, accuracies, models_name):
     plt.show()
 
 def get_embeddings_labels(models, models_name, fixed_images_labels, device):
-
     all_embeddings = []
-    all_labels = []
     all_domains = []
-    all_models = []
 
     for model, model_name in zip(models, models_name):
         model.eval()
@@ -98,41 +95,30 @@ def get_embeddings_labels(models, models_name, fixed_images_labels, device):
                 embeddings_labels[domain] = (embeddings, labels)
 
         all_embeddings_model = []
-        all_labels_model = []
         all_domains_model = []
-        all_models_model = []
 
         for domain in embeddings_labels:
             embeddings, labels = embeddings_labels[domain]
             all_embeddings_model.append(embeddings)
-            all_labels_model.append(labels)
             all_domains_model.extend([domain] * len(labels))
-            all_models_model.extend([model_name] * len(labels))
 
         all_embeddings_model = np.concatenate(all_embeddings_model, axis=0)
-        all_labels_model = np.concatenate(all_labels_model, axis=0)
         all_domains_model = np.array(all_domains_model)
-        all_models_model = np.array(all_models_model)
 
         all_embeddings.append(all_embeddings_model)
-        all_labels.append(all_labels_model)
         all_domains.append(all_domains_model)
-        all_models.append(all_models_model)
 
-    print(len(all_models))
-    return all_embeddings, all_labels, all_domains, all_models
+    return all_embeddings, all_domains
 
 def plot_tsnes_model(embeddings, labels, domains, domain_colors, cmap, path):
     tsne = TSNE(n_components=2, random_state=42, perplexity=30, init="pca", learning_rate="auto" )
     tsne_embeddings = tsne.fit_transform(embeddings)
-
-    #plot 2, domain color and class color
     fontsize = 14
     fig, axes = plt.subplots(1, 2, figsize=(20, 10), sharex=True, sharey=True)
 
     for domain in np.unique(domains):
         domain_mask = domains    == domain
-
+        #subplot 1: domain color
         axes[0].scatter(
             tsne_embeddings[domain_mask, 0],
             tsne_embeddings[domain_mask, 1],
@@ -165,6 +151,65 @@ def plot_tsnes_model(embeddings, labels, domains, domain_colors, cmap, path):
     cbar.set_label("Class")
     fig.tight_layout()
 
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    fig.savefig(path, dpi=300, bbox_inches="tight")
+    plt.show()
+
+def ax_tsnes_domain_color(ax, embeddings, domains):
+    tsne = TSNE(n_components=2, random_state=42, perplexity=30, init="pca", learning_rate="auto" )
+    tsne_embeddings = tsne.fit_transform(embeddings)
+
+    #plot 2, domain color and class color
+    fontsize = 14
+
+    domain_colors = {
+        "Mnist": "tab:blue",
+        "Mnist-M": "tab:orange",
+        "Svhn": "tab:green"
+    }
+
+    for domain in np.unique(domains):
+        domain_mask = domains    == domain
+
+        ax.scatter(
+            tsne_embeddings[domain_mask, 0],
+            tsne_embeddings[domain_mask, 1],
+            color=domain_colors[domain],
+            alpha=0.7,
+            s=20,
+            label=domain
+        )
+
+    ax.set_xlabel("t-SNE Dimension 1", fontsize=fontsize)
+    ax.grid(True)
+    ax.legend(fontsize=16)
+
+    return ax
+
+def plot_tsnes_all_models(models, models_name, test_data, samples_per_class, device, seed = 42):
+    fixed_images_labels = {}
+
+    for domain in test_data:
+        images, labels = test_data[domain]
+        fixed_images, fixed_labels = select_fixed_subset(
+            images,
+            labels,
+            samples_per_class=samples_per_class,
+            seed=seed
+        )
+        fixed_images_labels[domain] = (fixed_images, fixed_labels)
+
+    all_embeddings, all_domains = get_embeddings_labels(models, models_name, fixed_images_labels, device)
+   
+    fig, axes = plt.subplots(1, len(models), figsize=(20, 7))
+
+    for i, model_name in enumerate(models_name):
+        ax_tsnes_domain_color(axes[i], all_embeddings[i], all_domains[i])
+        if i == 0:
+            axes[i].set_ylabel("t-SNE Dimension 2", fontsize=14)
+        axes[i].set_title(f"{model_name}", fontsize=16)
+    fig.tight_layout()
+    path = "../images/compare_models/models_tsnes.png"
     os.makedirs(os.path.dirname(path), exist_ok=True)
     fig.savefig(path, dpi=300, bbox_inches="tight")
     plt.show()
