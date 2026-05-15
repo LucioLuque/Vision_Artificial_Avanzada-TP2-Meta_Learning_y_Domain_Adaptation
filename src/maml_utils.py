@@ -61,7 +61,6 @@ def run_meta_batch(model, sampler, optimizer, meta_batch_size, inner_updates, al
         meta_loss /= meta_batch_size
         optimizer.zero_grad()
         meta_loss.backward()
-        # torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
         optimizer.step()
 
     return query_loss_sum/meta_batch_size, support_acc_pre_sum/meta_batch_size, support_acc_post_sum/meta_batch_size, query_acc_post_sum/meta_batch_size
@@ -159,27 +158,3 @@ def plot_maml_history(history, path):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     plt.savefig(path, dpi=300, bbox_inches="tight")
     plt.show()
-
-    # epochs = range(1, len(history["train_query_loss"]) + 1)
-    # fontsize = 14
-    # fig, axes = plt.subplots(1, 2, figsize=(16, 5))
-    # axes[0].plot(epochs, history["train_support_acc_pre"], label="Train Support Acc Pre")
-    # axes[0].plot(epochs, history["train_support_acc_post"], label="Train Support Acc Post")
-    # axes[0].plot(epochs, history["val_support_acc_pre"], label="Val Support Acc Pre")
-    # axes[0].plot(epochs, history["val_support_acc_post"], label="Val Support Acc Post")
-    # axes[0].set_xlabel("Epoch", fontsize=fontsize)
-    # axes[0].set_ylabel("Accuracy", fontsize=fontsize)
-    # axes[0].set_ylabel("Accuracy")
-    # axes[0].legend(fontsize=fontsize)
-    # axes[0].grid(True)
-
-    # axes[1].plot(epochs, history["train_query_loss"], label="Train Query Loss")
-    # axes[1].plot(epochs, history["val_query_loss"], label="Val Query Loss")
-    # axes[1].set_xlabel("Epoch", fontsize=fontsize)
-    # axes[1].set_ylabel("Loss", fontsize=fontsize)
-    # axes[1].legend(fontsize=fontsize)
-    # axes[1].grid(True)
-    # plt.tight_layout()
-    # os.makedirs(os.path.dirname(path), exist_ok=True)
-    # plt.savefig(path, dpi=300, bbox_inches="tight")
-    # plt.show()

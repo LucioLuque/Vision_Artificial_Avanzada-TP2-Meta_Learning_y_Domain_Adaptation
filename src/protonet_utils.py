@@ -43,7 +43,6 @@ def run_epoch(model, sampler, optimizer, criterion, device, episodes, training =
         epoch_support_acc += support_acc
         epoch_query_acc += query_acc
 
-        #Progress bar update
         current_mean_loss = epoch_loss / (episode + 1)
         current_mean_support_acc = epoch_support_acc / (episode + 1)
         current_mean_query_acc = epoch_query_acc / (episode + 1)
@@ -86,16 +85,6 @@ def save_tsne_snapshot(model, images, labels, device, save_path, title, perplexi
         s=10,
         alpha=0.8,
     )
-    # plt.colorbar(scatter, ticks=list(range(10)), label="Clase")
-    # plt.title(title)
-    # plt.xlabel("t-SNE dim 1")
-    # plt.ylabel("t-SNE dim 2")
-    # plt.tight_layout()
-
-    # os.makedirs(os.path.dirname(save_path), exist_ok=True)
-    # plt.savefig(save_path, dpi=150, facecolor="white")
-    # plt.show()
-    # plt.close()
     return emb_2d, y
 
 def train_protonet(model, train_sampler, val_sampler, optimizer, criterion, 
@@ -113,7 +102,6 @@ def train_protonet(model, train_sampler, val_sampler, optimizer, criterion,
 
     os.makedirs(tsne_dir, exist_ok=True)
 
-    # Snapshot inicial: antes de entrenar
     if tsne_images is not None and tsne_labels is not None:
         emb_2d, y = save_tsne_snapshot(
             model=model,

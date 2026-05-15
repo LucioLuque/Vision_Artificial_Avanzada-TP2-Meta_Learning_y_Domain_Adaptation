@@ -96,8 +96,6 @@ def save_svhn_dataloaders(val_size=0.1, seed = 42):
         transform=transform
     )
 
-    #creo que validation no es necesario!
-
     val_size = int(val_size * len(train_dataset))
     train_size = len(train_dataset) - val_size
     train_dataset, val_dataset = torch.utils.data.random_split(
@@ -264,7 +262,6 @@ def prepare_images(images, target_size, mean, std):
     mean_t = torch.tensor(mean, dtype=images.dtype, device=images.device).view(1, -1, 1, 1)
     std_t = torch.tensor(std, dtype=images.dtype, device=images.device).view(1, -1, 1, 1)
 
-    # MNIST mean and std shape 1, repeat to 3 channels
     if mean_t.shape[1] == 1 and images.shape[1] == 3:
         mean_t = mean_t.repeat(1, 3, 1, 1)
         std_t = std_t.repeat(1, 3, 1, 1)

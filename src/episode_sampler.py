@@ -10,7 +10,6 @@ class EpisodeSampler():
 
         self.classes = torch.unique(labels)
 
-        #dict class: indexes
         self.class_to_indices = {
             class_label.item(): torch.where(labels == class_label)[0]
             for class_label in torch.unique(labels)

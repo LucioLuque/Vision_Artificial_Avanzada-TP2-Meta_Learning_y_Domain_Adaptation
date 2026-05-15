@@ -159,7 +159,6 @@ def ax_tsnes_domain_color(ax, embeddings, domains):
     tsne = TSNE(n_components=2, random_state=42, perplexity=30, init="pca", learning_rate="auto" )
     tsne_embeddings = tsne.fit_transform(embeddings)
 
-    #plot 2, domain color and class color
     fontsize = 14
 
     domain_colors = {
